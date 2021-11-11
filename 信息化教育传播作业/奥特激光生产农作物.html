@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./奥特激光.css">
+</head>
+
+<body>
+    <h1>奥特激光生产农作物</h1>
+    <div>
+        <span>选择植物：</span>
+        <select name="" id="plantSel" onchange="setting()">
+            <option value="">西红柿</option>
+            <option value="">白菜</option>
+            <option value="">小橘子</option>
+        </select>
+        <span style="font-size: larger;padding-left: 50px;">产量：<input id="output" type="text">
+    </div>
+    <img width="100px" id="zhiwu" src="./西红柿.jpg" alt="">
+    <img width="200px" src="./211021154555.jpg" alt="">
+    <ul>
+        <li>
+            <span>选择光照强度：</span>
+            <select name="" id="lxSel">
+                <option value="">5000lx</option>
+                <option value="">10000lx</option>
+                <option value="">15000lx</option>
+                <option value="">20000lx</option>
+                <option value="">25000lx</option>
+            </select>
+        </li>
+        <li>
+            <span>选择光质：</span>
+            <select name="" id="lightSel">
+                <option value="">硬质光</option>
+                <option value="">软质光</option>
+            </select>
+        </li>
+        <li>
+            <span>选择光照时间：</span>
+            <select name="" id="timeSel">
+                <option value="">4h/day</option>
+                <option value="">8h/day</option>
+                <option value="">12h/day</option>
+                <option value="">16h/day</option>
+            </select>
+        </li>
+        <li>
+            <span>选择光照面积：</span>
+            <select name="" id="areaSel">
+                <option value="">100cm^2</option>
+                <option value="">150cm^2</option>
+                <option value="">200cm^2</option>
+            </select>
+        </li>
+    </ul>
+    <button id="fashe" onclick="calculate()">发射</button>
+</body>
+<script>
+    var plant, lx, light, time, area, plantIndex,lightIndex,timeIndex,areaIndex,lxIndex,output=1;
+    plant = document.getElementById("plantSel");
+    light = document.getElementById("lightSel");
+    time = document.getElementById("timeSel");
+    area = document.getElementById("areaSel");
+    lx = document.getElementById("lxSel");
+    // var plantIndex = plant.selectedIndex; // 选中索引
+    // var lxIndex = lx.selectedIndex; // 选中索引
+    // var text = lx.options[index].text; // 选中文本
+    // var value = lx.options[index].value; // 选中值
+    // console.log(index, text, value);
+    function setting(params) {
+        plantIndex = plant.selectedIndex;
+        if (plantIndex == 0) {
+            document.getElementById("zhiwu").src = "./西红柿.jpg";
+        } else if (plantIndex == 1) {
+            document.getElementById("zhiwu").src = "./白菜.jpg";
+        } else {
+            document.getElementById("zhiwu").src = "./小橘子.jpg";
+        }
+    }
+    function calculate(params) {
+        output=1;
+        plantIndex = plant.selectedIndex;
+        lxIndex = lx.selectedIndex;
+        lightIndex = light.selectedIndex;
+        timeIndex = time.selectedIndex;
+        areaIndex = area.selectedIndex;
+        if (plantIndex==0) {
+            if(lxIndex==0){
+                output=output*10;
+            }else if(lxIndex==1){
+                output=output*15;
+            }else if(lxIndex==2){
+                output=output*20;
+            }else if(lxIndex==3){
+                output=output*10;
+            }else{
+                output=output*5;
+            }
+            if(lightIndex==0){
+                output=output*10;
+            }else{
+                output*=15;
+            }
+            if(timeIndex==0){
+                output*=10;
+            }else if(timeIndex==1){
+                output*=20;
+            }else if(timeIndex==2){
+                output*=30;
+            }else{
+                output*=35;
+            }
+            if(areaIndex==0){
+                output*=10;
+            }else if(areaIndex==1){
+                output*=15;
+            }else{
+                output*18;
+            }
+        }
+        document.getElementById("output").value = output;
+    }
+
+</script>
+
+</html>
